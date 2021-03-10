@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/listTransactionsFragment"
+        android:name="co.com.test.payments.screens.payments.view.ListPaymentsFragment"
+        android:label="@string/paymentsListTitle"
+        tools:layout="@layout/fragment_list_payments">
+        <action
+            android:id="@+id/action_list_to_to_detail"
+            app:destination="@id/creation_result_fragment_to_transactions_list"/>
+        <action
+            android:id="@+id/action_list_to_home"
+            app:destination="@id/homeFragment" />
+
+    </fragment>
+    <fragment
+        android:id="@+id/createTransactionFragment"
+        android:name="co.com.test.payments.screens.payments.view.CreatePaymentFragment"
+        android:label="@string/createPaymentTitle"
+        tools:layout="@layout/fragment_create_payment">
+        <action
+            android:id="@+id/action_create_to_home"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_creation_to_detail"
+            app:destination="@id/creation_result_fragment_to_transactions_list" />
+    </fragment>
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="co.com.test.payments.screens.payments.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home">
+        <action
+            android:id="@+id/action_home_to_create"
+            app:destination="@id/createTransactionFragment" />
+        <action
+            android:id="@+id/action_home_to_list"
+            app:destination="@id/listTransactionsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/creation_result_fragment_to_transactions_list"
+        android:name="co.com.test.payments.screens.payments.view.PaymentDetailFragment"
+        android:label="CreationResultFragment"
+        tools:layout="@layout/fragment_transaction_detail">
+        <action
+            android:id="@+id/action_detail_to_list"
+            app:destination="@id/listTransactionsFragment" />
+
+        <argument
+            android:name="paymentUuid"
+            android:defaultValue="-1"
+            app:argType="integer" />
+    </fragment>
+</navigation>

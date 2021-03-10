@@ -1,0 +1,684 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="creditSelected"
+            type="String" />
+
+        <variable
+            name="payment"
+            type="co.com.test.payments.common.model.Payment" />
+
+        <variable
+            name="buyer"
+            type="co.com.test.payments.common.model.User" />
+
+        <variable
+            name="payer"
+            type="co.com.test.payments.common.model.User" />
+
+        <variable
+            name="instrument"
+            type="co.com.test.payments.common.model.Instrument" />
+
+        <variable
+            name="interests"
+            type="co.com.test.payments.common.model.Interests" />
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guide"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.45" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/initGuide"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.02" />
+
+            <TextView
+                android:id="@+id/lblResumeSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_bottom_btn"
+                android:text="@string/transaction_resume"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <View
+                android:id="@+id/background1"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="10dp"
+                android:background="#00CAB7"
+                app:layout_constraintBottom_toBottomOf="@id/divider1"
+                app:layout_constraintEnd_toEndOf="@id/guide"
+                app:layout_constraintStart_toStartOf="@id/initGuide"
+                app:layout_constraintTop_toBottomOf="@id/lblAmountTitle" />
+
+            <View
+                android:id="@+id/background3"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="10dp"
+                android:background="#6FFD75"
+                app:layout_constraintBottom_toBottomOf="@id/divider3"
+                app:layout_constraintEnd_toEndOf="@id/guide"
+                app:layout_constraintStart_toStartOf="@id/initGuide"
+                app:layout_constraintTop_toBottomOf="@id/lblBuyerTitle" />
+
+            <View
+                android:id="@+id/background4"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginStart="10dp"
+                android:background="#32A2FB"
+                app:layout_constraintBottom_toBottomOf="@id/divider4"
+                app:layout_constraintEnd_toEndOf="@id/guide"
+                app:layout_constraintStart_toStartOf="@id/initGuide"
+                app:layout_constraintTop_toBottomOf="@id/lblPayerTitle" />
+
+            <TextView
+                android:id="@+id/lblAmountTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_input"
+                android:text="AMOUNT"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/initGuide"
+                app:layout_constraintTop_toBottomOf="@id/lblResumeSubtitle" />
+
+            <TextView
+                android:id="@+id/lblPayerTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_input"
+                android:text="PAYER INFO"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/initGuide"
+                app:layout_constraintTop_toBottomOf="@id/lblBuyerPhoneNumber" />
+
+            <TextView
+                android:id="@+id/lblBuyerTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_input"
+                android:text="BUYER INFO"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@id/initGuide"
+                app:layout_constraintTop_toBottomOf="@id/interestContainer" />
+
+            <TextView
+                android:id="@+id/lblCard"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="Card"
+                android:textAlignment="textEnd"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/background1"
+                app:layout_constraintTop_toBottomOf="@id/lblAmountTitle" />
+
+            <TextView
+                android:id="@+id/txtCard"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:text="@{instrument.card.number}"
+                android:layout_marginStart="10dp"
+                android:layout_width="0dp"
+                android:textAlignment="textStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guide"
+                app:layout_constraintTop_toTopOf="@id/lblCard"
+                app:layout_constraintBottom_toBottomOf="@id/lblCard"/>
+
+            <TextView
+                android:id="@+id/lblAmount"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_input"
+                android:layout_marginEnd="10dp"
+                android:text="Total Amount"
+                android:textAlignment="textEnd"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/background1"
+                app:layout_constraintTop_toBottomOf="@id/lblCard" />
+
+            <TextView
+                android:id="@+id/txtAmount"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:text="@{payment.amount.total.toString()}"
+                android:layout_width="0dp"
+                android:textAlignment="textStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guide"
+                app:layout_constraintTop_toTopOf="@id/lblAmount"
+                app:layout_constraintBottom_toBottomOf="@id/lblAmount"/>
+
+            <TextView
+                android:id="@+id/lblCurrency"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_input"
+                android:layout_marginEnd="10dp"
+                android:text="Currency"
+                android:textAlignment="textEnd"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/background1"
+                app:layout_constraintTop_toBottomOf="@id/lblAmount" />
+
+            <TextView
+                android:id="@+id/txtCurrency"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:text="@{payment.amount.currency}"
+                android:layout_width="0dp"
+                android:textAlignment="textStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guide"
+                app:layout_constraintTop_toTopOf="@id/lblCurrency"
+                app:layout_constraintBottom_toBottomOf="@id/lblCurrency"/>
+
+            <TextView
+                android:id="@+id/lblCreditType"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_input"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="20dp"
+                android:text="Credit type/Installment"
+                android:textAlignment="textEnd"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/background1"
+                app:layout_constraintTop_toBottomOf="@id/lblCurrency" />
+
+            <TextView
+                android:id="@+id/txtCreditType"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:text="@{creditSelected}"
+                android:layout_width="0dp"
+                android:textAlignment="textStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guide"
+                app:layout_constraintTop_toTopOf="@id/lblCreditType"
+                app:layout_constraintBottom_toBottomOf="@id/lblCreditType"/>
+
+            <View
+                android:id="@+id/divider1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintStart_toStartOf="@id/initGuide"
+                app:layout_constraintTop_toBottomOf="@id/lblCreditType" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/interestContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/lblCreditType">
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guide1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.45" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/initGuide1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    app:layout_constraintGuide_percent="0.02" />
+
+                <View
+                    android:id="@+id/background2"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="10dp"
+                    android:background="#F6CB4A"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="@id/guide1"
+                    app:layout_constraintStart_toStartOf="@id/initGuide1"
+                    app:layout_constraintTop_toBottomOf="@id/lblInterestTitle" />
+
+            <TextView
+                android:id="@+id/lblInterestTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_input"
+                android:text="INTERESTS"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toEndOf="@id/initGuide1"
+                 />
+
+            <TextView
+                android:id="@+id/lblInitial"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="Initial Value"
+                android:textAlignment="textEnd"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/guide1"
+                app:layout_constraintTop_toBottomOf="@id/lblInterestTitle" />
+
+            <TextView
+                android:id="@+id/txtInitial"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:text="@{interests.values.original.toString()}"
+                android:layout_width="0dp"
+                android:textAlignment="textStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guide1"
+                app:layout_constraintTop_toTopOf="@id/lblInitial"
+                app:layout_constraintBottom_toBottomOf="@id/lblInitial"/>
+
+            <TextView
+                android:id="@+id/lblInstallment"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_input"
+                android:layout_marginEnd="10dp"
+                android:text="Installment Value"
+                android:textAlignment="textEnd"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/guide1"
+                app:layout_constraintTop_toBottomOf="@id/lblInitial" />
+
+            <TextView
+                android:id="@+id/txtInstallment"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:text="@{interests.values.installment.toString()}"
+                android:layout_width="0dp"
+                android:textAlignment="textStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guide1"
+                app:layout_constraintTop_toTopOf="@id/lblInstallment"
+                app:layout_constraintBottom_toBottomOf="@id/lblInstallment"/>
+
+            <TextView
+                android:id="@+id/lblInterests"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_input"
+                android:layout_marginEnd="10dp"
+                android:text="Interests Value"
+                android:textAlignment="textEnd"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/guide1"
+                app:layout_constraintTop_toBottomOf="@id/lblInstallment" />
+
+            <TextView
+                android:id="@+id/txtInterests"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:text="@{interests.values.interest.toString()}"
+                android:layout_width="0dp"
+                android:textAlignment="textStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guide1"
+                app:layout_constraintTop_toTopOf="@id/lblInterests"
+                app:layout_constraintBottom_toBottomOf="@id/lblInterests"/>
+
+            <TextView
+                android:id="@+id/lblTotal"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_input"
+                android:layout_marginEnd="10dp"
+                android:text="Total Value"
+                android:textAlignment="textEnd"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/guide1"
+                app:layout_constraintTop_toBottomOf="@id/lblInterests" />
+
+            <TextView
+                android:id="@+id/txtTotal"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:text="@{interests.values.total.toString()}"
+                android:layout_width="0dp"
+                android:textAlignment="textStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guide1"
+                app:layout_constraintTop_toTopOf="@id/lblTotal"
+                app:layout_constraintBottom_toBottomOf="@id/lblTotal"/>
+
+                <View
+                    android:id="@+id/divider2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:background="@android:color/darker_gray"
+                    app:layout_constraintTop_toBottomOf="@id/lblTotal"
+                    app:layout_constraintStart_toStartOf="@id/initGuide1"
+                    app:layout_constraintBottom_toBottomOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+            <TextView
+                android:id="@+id/lblBuyerName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="Name"
+                android:textAlignment="textEnd"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/background3"
+                app:layout_constraintTop_toBottomOf="@id/lblBuyerTitle" />
+
+            <TextView
+                android:id="@+id/txtBuyerName"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:text="@{buyer.name}"
+                android:layout_width="0dp"
+                android:textAlignment="textStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guide"
+                app:layout_constraintTop_toTopOf="@id/lblBuyerName"
+                app:layout_constraintBottom_toBottomOf="@id/lblBuyerName"/>
+
+            <TextView
+                android:id="@+id/lblBuyerSurName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_input"
+                android:layout_marginEnd="10dp"
+                android:text="Surname"
+                android:textAlignment="textEnd"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/background3"
+                app:layout_constraintTop_toBottomOf="@id/lblBuyerName" />
+
+            <TextView
+                android:id="@+id/txtBuyerSurName"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:text="@{buyer.surname}"
+                android:layout_width="0dp"
+                android:textAlignment="textStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guide"
+                app:layout_constraintTop_toTopOf="@id/lblBuyerSurName"
+                app:layout_constraintBottom_toBottomOf="@id/lblBuyerSurName"/>
+
+            <TextView
+                android:id="@+id/lblBuyerEmail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_input"
+                android:layout_marginEnd="10dp"
+                android:text="Email"
+                android:textAlignment="textEnd"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/background3"
+                app:layout_constraintTop_toBottomOf="@id/lblBuyerSurName" />
+
+            <TextView
+                android:id="@+id/txtBuyerEmail"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:text="@{buyer.email}"
+                android:layout_width="0dp"
+                android:textAlignment="textStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guide"
+                app:layout_constraintTop_toTopOf="@id/lblBuyerEmail"
+                app:layout_constraintBottom_toBottomOf="@id/lblBuyerEmail"/>
+
+            <TextView
+                android:id="@+id/lblBuyerPhoneNumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_input"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="20dp"
+                android:text="Phone Number"
+                android:textAlignment="textEnd"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/background3"
+                app:layout_constraintTop_toBottomOf="@id/lblBuyerEmail" />
+
+            <TextView
+                android:id="@+id/txtBuyerPhoneNumber"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:text="@{buyer.mobile}"
+                android:layout_width="0dp"
+                android:textAlignment="textStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guide"
+                app:layout_constraintTop_toTopOf="@id/lblBuyerPhoneNumber"
+                app:layout_constraintBottom_toBottomOf="@id/lblBuyerPhoneNumber"/>
+
+            <View
+                android:id="@+id/divider3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintStart_toStartOf="@id/initGuide"
+                app:layout_constraintTop_toBottomOf="@id/lblBuyerPhoneNumber" />
+
+
+            <TextView
+                android:id="@+id/lblPayerName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="Name"
+                android:textAlignment="textEnd"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/background4"
+                app:layout_constraintTop_toBottomOf="@id/lblPayerTitle" />
+
+            <TextView
+                android:id="@+id/txtPayerName"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:text="@{payer.name}"
+                android:layout_width="0dp"
+                android:textAlignment="textStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guide"
+                app:layout_constraintTop_toTopOf="@id/lblPayerName"
+                app:layout_constraintBottom_toBottomOf="@id/lblPayerName"/>
+
+
+            <TextView
+                android:id="@+id/lblPayerSurName"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_input"
+                android:layout_marginEnd="10dp"
+                android:text="Surname"
+                android:textAlignment="textEnd"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/background4"
+                app:layout_constraintTop_toBottomOf="@id/lblPayerName" />
+
+            <TextView
+                android:id="@+id/txtPayerSurName"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:text="@{payer.surname}"
+                android:layout_width="0dp"
+                android:textAlignment="textStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guide"
+                app:layout_constraintTop_toTopOf="@id/lblPayerSurName"
+                app:layout_constraintBottom_toBottomOf="@id/lblPayerSurName"/>
+
+            <TextView
+                android:id="@+id/lblPayerEmail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_input"
+                android:layout_marginEnd="10dp"
+                android:text="Email"
+                android:textAlignment="textEnd"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/background4"
+                app:layout_constraintTop_toBottomOf="@id/lblPayerSurName" />
+
+            <TextView
+                android:id="@+id/txtPayerEmail"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:text="@{payer.email}"
+                android:layout_width="0dp"
+                android:textAlignment="textStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guide"
+                app:layout_constraintTop_toTopOf="@id/lblPayerEmail"
+                app:layout_constraintBottom_toBottomOf="@id/lblPayerEmail"/>
+
+            <TextView
+                android:id="@+id/lblPayerPhoneNumber"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/margin_input"
+                android:layout_marginEnd="10dp"
+                android:layout_marginBottom="20dp"
+                android:text="Phone Number"
+                android:textAlignment="textEnd"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/background4"
+                app:layout_constraintTop_toBottomOf="@id/lblPayerEmail" />
+
+            <TextView
+                android:id="@+id/txtPayerPhoneNumber"
+                android:layout_height="wrap_content"
+                android:textColor="#000"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:text="@{payer.mobile}"
+                android:layout_width="0dp"
+                android:textAlignment="textStart"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/guide"
+                app:layout_constraintTop_toTopOf="@id/lblPayerPhoneNumber"
+                app:layout_constraintBottom_toBottomOf="@id/lblPayerPhoneNumber"/>
+
+            <View
+                android:id="@+id/divider4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@android:color/darker_gray"
+                app:layout_constraintStart_toStartOf="@id/initGuide"
+                app:layout_constraintTop_toBottomOf="@id/lblPayerPhoneNumber" />
+
+            <Button
+                android:id="@+id/btnNext"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_margin="@dimen/margin_bottom_btn"
+                android:background="#009688"
+                android:text="@string/createPaymentTitle"
+                android:textColor="#fff"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/lblPayerPhoneNumber" />
+
+            <TextView
+                android:id="@+id/cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="40dp"
+                android:text="@string/cancel"
+                android:textColor="#000"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/btnNext" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</layout>

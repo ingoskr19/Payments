@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="payment"
+            type="co.com.test.payments.screens.payments.model.TransactionEntity" />
+
+        <variable
+            name="listener"
+            type="co.com.test.payments.screens.payments.view.listener.PaymentListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{listener::onItemClicked}"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/paymentId"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:visibility="gone"
+            android:text="@{String.valueOf(payment.uuid)}"/>
+
+        <TextView
+            android:id="@+id/reference"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{payment.reference}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/value"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{payment.totalAmount}"
+            android:textStyle="bold|italic"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/reference" />
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{payment.date}"
+            android:textSize="12sp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/state"
+            app:layout_constraintStart_toStartOf="@id/state"
+            app:layout_constraintEnd_toEndOf="@id/state"/>
+
+        <TextView
+            android:id="@+id/state"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{payment.state}"
+            android:textStyle="bold"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@id/select"
+            app:layout_constraintTop_toTopOf="@id/select"
+            app:layout_constraintBottom_toBottomOf="@id/select"/>
+
+        <ImageView
+            android:id="@+id/select"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/ic_next_arrow"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,50 @@
+<resources>
+    <string-array name="currency_list">
+        <item>Select…</item>
+        <item>COP</item>
+        <item>USD</item>
+    </string-array>
+    <string-array name="document_types_list">
+        <item>Select…</item>
+        <item>CC</item>
+        <item>CE</item>
+        <item>TI</item>
+        <item>RC</item>
+        <item>NIT</item>
+        <item>RUT</item>
+    </string-array>
+    <string name="app_name">Evertec Test</string>
+    <string name="paymentsListTitle">List of Payments</string>
+    <string name="createPaymentTitle">Create Payment</string>
+    <string name="finishCreation">Transactions list</string>
+    <string name="paymentDetailTitle">Payment Detail</string>
+    <string name="empty">There aren\'t payments</string>
+    <string name="newPayment">New Payment</string>
+    <string name="amount">Valor</string>
+    <string name="names">Name</string>
+    <string name="document">Document Number</string>
+    <string name="surName">SurName</string>
+    <string name="email">Email</string>
+    <string name="mobileNumber">Mobile Number</string>
+    <string name="next">Next</string>
+    <string name="payer_information">PAYER INFORMATION</string>
+    <string name="buyer_information">BUYER INFORMATION</string>
+    <string name="document_type">Document Type</string>
+    <string name="currency">Currency</string>
+    <string name="card">Card Number</string>
+    <string name="expirationDate">Expiration Date (Format: MMYY)</string>
+    <string name="cvv">CVV</string>
+    <string name="sameBuyer">I\'m the same buyer person</string>
+    <string name="labelInstallment">Please choose credit type from the list and select the installment</string>
+    <string name="lblCredit">Credits List:</string>
+    <string name="lblInstallment">Installment</string>
+    <string name="interestSubtitle">These are interests for the credit selected:</string>
+    <string name="register_payment">Register payment</string>
+    <string name="transaction_resume">Transaction Resume</string>
+    <string name="validateCard">Validate Card</string>
+    <string name="subtitle_otp">To create this transaction you need validate the code that was sent to you. Please type the code</string>
+    <string name="validateCode">Validate Code</string>
+    <string name="cancel">
+        <u>Cancel</u>
+    </string>
+</resources>
